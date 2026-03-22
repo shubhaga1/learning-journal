@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pinecone import Pinecone, ServerlessSpec
 from sentence_transformers import SentenceTransformer
 
-load_dotenv(dotenv_path="../05-env-variables/.env")
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../.env"))
 
 # ============================================================
 # STEP 1: Load model + Connect to Pinecone

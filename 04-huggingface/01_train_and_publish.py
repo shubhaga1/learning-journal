@@ -41,7 +41,7 @@ import numpy as np
 # ============================================================
 print("\nSTEP 1: Logging in to HuggingFace...")
 
-load_dotenv(dotenv_path="../05-env-variables/.env")
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../.env"))
 HF_TOKEN    = os.getenv("HF_TOKEN")  # loaded from .env
 HF_USERNAME = "your-huggingface-username"                # replace this
 

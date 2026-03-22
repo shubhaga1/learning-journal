@@ -7,7 +7,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 
-load_dotenv(dotenv_path="../05-env-variables/.env")
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../.env"))
 
 # ============================================================
 # STEP 1: Load model + Connect to Pinecone
