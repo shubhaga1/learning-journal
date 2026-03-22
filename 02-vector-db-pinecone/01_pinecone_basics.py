@@ -1,8 +1,12 @@
 import warnings
 warnings.filterwarnings("ignore")
 
+import os
+from dotenv import load_dotenv
 from pinecone import Pinecone, ServerlessSpec
 from sentence_transformers import SentenceTransformer
+
+load_dotenv(dotenv_path="../05-env-variables/.env")
 
 # ============================================================
 # STEP 1: Load the embedding model + Connect to Pinecone
@@ -10,7 +14,7 @@ from sentence_transformers import SentenceTransformer
 print("STEP 1: Loading model and connecting to Pinecone...")
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
-pc = Pinecone(api_key="pcsk_4xVQNq_3sWZHasDEYbW9s1KTq7LjefaDh5aanSqybdE4BVUYs8ot83Ro3aGzjR8RTGg4sQ")
+pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 
 print("✅ Model loaded!")
 print("✅ Connected to Pinecone!")

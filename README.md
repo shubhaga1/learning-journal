@@ -12,7 +12,8 @@ learning-journal/
 │
 ├── 01-python-basics/          # Python fundamentals
 ├── 02-vector-db-pinecone/     # Vector databases, embeddings, semantic search
-└── 03-docker-k8s/             # Containers, VMs, Docker, Kubernetes
+├── 03-docker-k8s/             # Containers, VMs, Docker, Kubernetes
+└── 04-huggingface/            # Fine-tune and publish AI models
 ```
 
 ---
@@ -31,6 +32,11 @@ learning-journal/
 | 01_pinecone_basics.py | What is a vector DB, upsert, query |
 | 02_movie_search.py | Real use case — semantic movie search with sentence-transformers |
 | 03_movie_search_langchain.py | Same app using LangChain — why it's better |
+
+### 04 — HuggingFace
+| File | What you learn |
+|------|---------------|
+| 01_train_and_publish.py | Fine-tune distilbert for sentiment analysis + publish to HuggingFace Hub |
 
 ### 03 — Docker & Kubernetes
 | File | What you learn |

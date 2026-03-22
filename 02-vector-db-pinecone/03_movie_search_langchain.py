@@ -1,9 +1,13 @@
 import warnings
 warnings.filterwarnings("ignore")
 
+import os
+from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
+
+load_dotenv(dotenv_path="../05-env-variables/.env")
 
 # ============================================================
 # STEP 1: Load model + Connect to Pinecone
@@ -14,7 +18,7 @@ print("STEP 1: Loading model and connecting to Pinecone...")
 # LangChain handles the embedding — just pass the model name
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
-pc = Pinecone(api_key="pcsk_4xVQNq_3sWZHasDEYbW9s1KTq7LjefaDh5aanSqybdE4BVUYs8ot83Ro3aGzjR8RTGg4sQ")
+pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 
 print("✅ Model loaded!")
 print("✅ Connected to Pinecone!")

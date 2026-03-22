@@ -11,4 +11,5 @@ venv/
 
 # API Keys — never commit these
 .env
+.env.*
 secrets.py
