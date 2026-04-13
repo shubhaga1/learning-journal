@@ -4,24 +4,31 @@
 #
 # TYPE 1: Bare Metal (used in data centers / cloud)
 #
-#   Physical Server
-#   └── VMware ESXi / Hyper-V  ← directly on hardware, no OS!
-#       ├── VM 1 → Ubuntu + App A
-#       ├── VM 2 → Windows + App B
-#       └── VM 3 → CentOS + App C
+#   Physical Hardware (CPU, RAM, Disk, Network)
+#   └── VMware ESXi / Hyper-V      ← sits DIRECTLY on hardware, no OS underneath
+#       │                              fakes dedicated hardware for each VM
+#       ├── VM 1 → Ubuntu + App A  ← full OS, thinks it owns the hardware
+#       ├── VM 2 → Windows + App B ← full OS, completely isolated from VM 1
+#       └── VM 3 → CentOS + App C  ← full OS, can run different kernel than others
+#
+#   Key: each VM has its OWN operating system kernel.
+#   The hypervisor splits one physical machine into many isolated machines.
 #
 #   Real examples:
-#     AWS EC2    → each instance IS a VM on VMware/Xen/KVM
-#     Azure VMs  → Hyper-V bare metal
-#     Data centers → VMware ESXi on Dell/HP servers
+#     AWS EC2        → your instance is a VM on a shared physical server (Xen/KVM)
+#                      you never see other customers' VMs — complete isolation
+#     Azure VMs      → Hyper-V on bare metal Dell/HP servers in Microsoft datacenters
+#     Data centers   → VMware ESXi on physical rack servers
 #
 # TYPE 2: Hosted (used by developers locally)
 #
-#   Your MacBook
-#   └── macOS
-#       └── VirtualBox / Parallels / VMware Fusion
-#           ├── VM 1 → Ubuntu (for Linux dev)
-#           └── VM 2 → Windows (for testing)
+#   Physical Hardware
+#   └── macOS / Windows            ← full OS runs first (unlike Type 1)
+#       └── VirtualBox / Parallels / VMware Fusion   ← hypervisor runs as an app
+#           ├── VM 1 → Ubuntu      ← full OS inside a window on your Mac
+#           └── VM 2 → Windows     ← can run Windows inside macOS
+#
+#   Slower than Type 1 because there's an extra OS layer underneath.
 #
 # ============================================================
 
@@ -32,7 +39,7 @@ def log(method_name, message):
 
 
 class PhysicalServer:
-    # LOG ORDER 1: __init__ prints first when server is created
+    # log ORDER 1: __init__ prints first when server is created
     def __init__(self, name, total_ram_gb, total_disk_gb):
         self.name = name
         self.total_ram_gb = total_ram_gb
